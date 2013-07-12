@@ -1,0 +1,24 @@
+- name: ensure the packages are installed
+  yum: name={{ item }} state=installed
+  with_items:
+    - postgresql
+    - postgresql-libs
+    - postgresql-server
+    - postgresql-devel
+    - postgresql-contrib
+    - python-psycopg2
+
+- name: ensure the database initialization
+  command: /sbin/service postgresql initdb creates=/var/lib/pgsql/data/global/pg_database
+  notify: restart postgresql
+
+- name: copy pg_hba.conf
+  template: src=pg_hba.conf dest=/var/lib/pgsql/data/pg_hba.conf
+  notify: reload postgresql
+
+- name: copy pg_ident.conf
+  template: src=pg_ident.conf dest=/var/lib/pgsql/data/pg_ident.conf
+  notify: reload postgresql
+
+- name: ensure the service started and enabled
+  service: name=postgresql state=started enabled=yes

@@ -1,0 +1,12 @@
+*.pyc
+*.orig
+.vagrant
+*.sqlite3
+.coverage
+<%= appName %>/static/css/*.css
+dist/
+node_modules/
+.webassets-cache/
+htmlcov/
+public/
+bower_components/

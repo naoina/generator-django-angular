@@ -1,0 +1,5 @@
+- include: devel.yml
+- include: nginx.yml
+- include: virtualenv.yml
+- include: git.yml
+- include: nodejs.yml

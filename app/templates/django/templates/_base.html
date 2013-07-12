@@ -1,0 +1,45 @@
+{% load i18n assets require staticfiles %}
+{% with is_ajax=request.is_ajax %}
+{% if not is_ajax %}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset=UTF-8" />
+  <meta name="keywords" content="" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="{% static 'favicon.ico' %}" />
+  <link href="{% static 'apple-touch-icon-precomposed-144x144.png' %}" rel="apple-touch-icon-precomposed">
+  <title>{% block title %}{{ site.name }}{% endblock %}</title>
+  {% assets filters='pyscss,cssmin' output='css/<%= appName %>.min.css' 'bower_components/normalize-css/normalize.css' 'css/*.scss' %}
+  <link href="{{ ASSET_URL }}" rel="stylesheet" type="text/css" media="screen" />
+  {% endassets %}
+  <script>function fallbackCDN(s) { document.write('<script src="'+s+'"><\/script>') }</script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js" type="text/javascript"></script>
+  <script>window.jQuery||fallbackCDN("{% static 'bower_components/jquery/jquery.min.js' %}")</script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+  <script>window.angular||fallbackCDN("{% static 'bower_components/angular/angular.min.js' %}")</script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular-resource.min.js"></script>
+  <script>try{window.angular.module('ngResource')}catch(e){fallbackCDN("{% static 'bower_components/angular-resource/angular-resource.min.js' %}")}</script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular-cookies.min.js"></script>
+  <script>try{window.angular.module('ngCookies')}catch(e){fallbackCDN("{% static 'bower_components/angular-cookies/angular-cookies.min.js' %}")}</script>
+  {% require_module 'main' %}
+</head>
+<body>
+<div id="wrap">
+  <div id="main">
+    <div class="contents">
+{% endif %}
+      {% block content %}{% endblock %}
+{% if not is_ajax %}
+    </div>
+  </div>
+  <div class="push"></div>
+</div>
+
+<footer>
+  <p class="credit">created by <%= adminName %></p>
+</footer>
+</body>
+</html>
+{% endif %}
+{% endwith %}

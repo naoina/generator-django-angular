@@ -1,0 +1,50 @@
+@charset "UTF-8";
+
+$footer_height: 60px;
+
+html, body {
+    height: 100%;
+}
+
+body {
+    color: #333;
+}
+
+p {
+    line-height: 1.6em;
+}
+
+#wrap {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    /* Negative indent footer by it's height */
+    margin: 0 auto -$footer_height;
+
+    #main {
+        width: 100%;
+
+        .contents {
+            padding: 30px 0;
+        }
+    }
+
+}
+
+.push {
+    height: $footer_height;
+}
+
+footer {
+    height: $footer_height;
+    background: #f9f9f9;
+    border-top: 2px solid #f0f0f0;
+    width: 100%;
+
+    .credit {
+        font-size: 90%;
+        margin: 20px 0;
+        padding-left: 1em;
+        padding-right: 1em;
+    }
+}

@@ -1,0 +1,8 @@
+[webservers]
+<%= deployHost %>
+
+[appservers]
+<%= deployHost %>
+
+[dbservers]
+<%= deployHost %>

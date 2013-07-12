@@ -1,0 +1,15 @@
+- hosts: dbservers
+  user: ${user}
+  sudo: yes
+  gather_facts: no
+  roles:
+    - common
+    - db
+
+- hosts: dbservers
+  user: ${user}
+  sudo: yes
+  sudo_user: postgres
+  gather_facts: no
+  roles:
+    - postgresql

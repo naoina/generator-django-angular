@@ -1,0 +1,6 @@
+- hosts: appservers
+  user: ${user}
+  sudo: yes
+  roles:
+    - common
+    - app

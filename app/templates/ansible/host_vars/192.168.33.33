@@ -1,0 +1,4 @@
+user: vagrant
+deployuser: <%= deployAccount %>
+dbname: <%= appName %>_staging
+dbpassword: vagrant

@@ -1,0 +1,4 @@
+user: <%= deployAccount %>
+deployuser: <%= deployAccount %>
+authorized_keys:
+  - ~/.ssh/id_rsa.pub

@@ -1,0 +1,16 @@
+- name: install nginx
+  yum: name=nginx state=installed
+
+- name: Remove the default nginx configurations
+  file: path=/etc/nginx/conf.d/{{ item }} state=absent
+  with_items:
+    - default.conf
+    - ssl.conf
+    - virtual.conf
+
+- name: Setup nginx configuration
+  template: src=nginx.conf dest=/etc/nginx/conf.d/{{ appname }}.conf
+  notify: restart nginx
+
+- name: services running and enabled
+  service: name=nginx state=running enabled=yes

@@ -1,0 +1,22 @@
+- name: configure user
+  user: name={{ deployuser }} state=present
+
+- name: ensure the authorized_keys
+  authorized_key: user={{ deployuser }} key="{{ item }}"
+  with_file: ${authorized_keys}
+
+- name: Copy the EPEL repository definition
+  copy: src=epel.repo dest=/etc/yum.repos.d/epel.repo
+
+- name: Create the GPG key for EPEL
+  copy: src=RPM-GPG-KEY-EPEL-6 dest=/etc/pki/rpm-gpg
+
+- name: install packages
+  yum: name={{ item }} state=installed
+  with_items:
+    - ntp
+
+- name: service running and enabled
+  service: name={{ item }} state=running enabled=yes
+  with_items:
+    - ntpd

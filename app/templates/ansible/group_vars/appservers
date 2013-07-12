@@ -1,0 +1,7 @@
+appname: <%= appName %>
+appuser: <%= deployAccount %>
+app_host: 127.0.0.1
+app_port: 8336
+nginx_server_host: <%= deployHost %>
+nginx_server_port: 80
+nginx_log_dir: /var/log/nginx

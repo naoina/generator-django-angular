@@ -1,0 +1,3 @@
+{
+  "directory": "<%= appName %>/static/bower_components"
+}

@@ -1,0 +1,5 @@
+- name: install development packages
+  yum: name={{ item }} state=installed
+  with_items:
+    - pcre-devel
+    - libyaml-devel

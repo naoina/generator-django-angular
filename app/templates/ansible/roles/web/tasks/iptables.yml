@@ -1,0 +1,3 @@
+- name: setup iptables rules
+  copy: src=iptables-save dest=/etc/sysconfig/iptables
+  notify: restart iptables
